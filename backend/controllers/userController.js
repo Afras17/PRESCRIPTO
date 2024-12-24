@@ -50,8 +50,8 @@ const registerUser = async (req, res) => {
         const user = await newUser.save()
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
 
-        res.json({ success: true, token})
-        
+        res.json({ success: true, token })
+
 
     } catch (error) {
         console.log(error)

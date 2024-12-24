@@ -8,18 +8,19 @@ import { assets } from '../assets/assets'
 const MyAppointments = () => {
 
     const { backendUrl, token, getDoctosData } = useContext(AppContext)
-    const navigate = useNavigate()
 
     const [appointments, setAppointments] = useState([])
     const [payment, setPayment] = useState('')
 
-    const months = ["","Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const months = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     // Function to format the date eg. ( 20_01_2000 => 20 Jan 2000 )
     const slotDateFormat = (slotDate) => {
         const dateArray = slotDate.split('_')
         return dateArray[0] + " " + months[Number(dateArray[1])] + " " + dateArray[2]
     }
+
+    const navigate = useNavigate()
 
     // Getting User Appointments Data Using API
     const getUserAppointments = async () => {
@@ -89,7 +90,7 @@ const MyAppointments = () => {
             const { data } = await axios.post(backendUrl + '/api/user/payment-razorpay', { appointmentId }, { headers: { token } })
             if (data.success) {
                 initPay(data.order)
-            }else{
+            } else {
                 toast.error(data.message)
             }
         } catch (error) {
@@ -105,7 +106,7 @@ const MyAppointments = () => {
             if (data.success) {
                 const { session_url } = data
                 window.location.replace(session_url)
-            }else{
+            } else {
                 toast.error(data.message)
             }
         } catch (error) {

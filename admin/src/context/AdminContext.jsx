@@ -20,7 +20,7 @@ const AdminContextProvider = (props) => {
 
         try {
 
-            const { data } = await axios.post(backendUrl + '/api/admin/all-doctors',{}, { headers: { aToken } })
+            const { data } = await axios.post(backendUrl + '/api/admin/all-doctors', {}, { headers: { aToken } })
             if (data.success) {
                 setDoctors(data.doctors)
             } else {
@@ -113,10 +113,10 @@ const AdminContextProvider = (props) => {
 
     const value = {
         aToken, setAToken,
-        backendUrl,doctors,
+        backendUrl, doctors,
         getAllDoctors,
         changeAvailability,
-        appointments,
+        appointments, setAppointments,
         getAllAppointments,
         getDashData,
         cancelAppointment,

@@ -15,37 +15,37 @@ const Login = () => {
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
-  
+
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
 
-    try{
+    try {
 
       if (state === 'Sign Up') {
 
         const { data } = await axios.post(backendUrl + '/api/user/register', { name, email, password })
-  
+
         if (data.success) {
           localStorage.setItem('token', data.token)
           setToken(data.token)
         } else {
           toast.error(data.message)
         }
-  
+
       } else {
-  
+
         const { data } = await axios.post(backendUrl + '/api/user/login', { email, password })
-  
+
         if (data.success) {
           localStorage.setItem('token', data.token)
           setToken(data.token)
         } else {
           toast.error(data.message)
         }
-  
+
       }
-    }catch(error){
+    } catch (error) {
       console.log(error)
       toast.error(error.message)
     }

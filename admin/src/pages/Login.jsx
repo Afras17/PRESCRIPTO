@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {assets} from '../assets/assets'
+import { assets } from '../assets/assets'
 import React, { useContext, useState } from 'react'
 import { DoctorContext } from '../context/DoctorContext'
 import { AdminContext } from '../context/AdminContext'
@@ -12,15 +12,15 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  
+
 
   const { setDToken } = useContext(DoctorContext)
-  const { setAToken ,backendUrl} = useContext(AdminContext)
+  const { setAToken, backendUrl } = useContext(AdminContext)
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
 
-    try{
+    try {
 
       if (state === 'Admin') {
 
@@ -31,9 +31,9 @@ const Login = () => {
         } else {
           toast.error(data.message)
         }
-  
+
       } else {
-  
+
         const { data } = await axios.post(backendUrl + '/api/doctor/login', { email, password })
         if (data.success) {
           setDToken(data.token)
@@ -41,10 +41,10 @@ const Login = () => {
         } else {
           toast.error(data.message)
         }
-  
+
       }
 
-    }catch(error){
+    } catch (error) {
 
     }
 

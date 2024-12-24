@@ -13,7 +13,7 @@ const Appointment = () => {
     const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 
     const navigate = useNavigate()
-    
+
     const [docInfo, setDocInfo] = useState(false)
     const [docSlots, setDocSlots] = useState([])
     const [slotIndex, setSlotIndex] = useState(0)
